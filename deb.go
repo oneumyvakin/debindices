@@ -50,7 +50,7 @@ type Package struct {
 // Parse fails on duplicate key if failOnDup is true
 func Parse(r io.Reader, fieldKey string, failOnDup bool) (packages map[string]Package, err error) {
 	if !strings.Contains(strings.Join(Fields, "|"), fieldKey) {
-		err = errors.New(fmt.Sprintf("unknown field can't be used as map key: %s", fieldKey))
+		err = fmt.Errorf("unknown field can't be used as map key: %s", fieldKey)
 		return
 	}
 
