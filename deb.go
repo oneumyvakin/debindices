@@ -3,7 +3,6 @@ package debindices
 
 import (
 	"bufio"
-	"errors"
 	"fmt"
 	"io"
 	"regexp"
