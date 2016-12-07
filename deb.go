@@ -1,4 +1,4 @@
-// Parser for Binary Packages Indices files(Packages.gz, Packages.bz2, Packages) of Debian/Ubuntu repository
+// Package debindices parse Binary Packages Indices files(Packages.gz, Packages.bz2, Packages) of Debian/Ubuntu repository
 package debindices
 
 import (
@@ -11,7 +11,7 @@ import (
 	"strings"
 )
 
-// Supported fields
+// Fields supported by parser
 var Fields = []string{
 	"Package",
 	"Priority",
@@ -68,7 +68,7 @@ func Parse(r io.Reader, fieldKey string, failOnDup bool) (packages map[string]Pa
 		if curStr == "" {
 			if failOnDup {
 				if _, ok := packages[key]; ok {
-					err = errors.New(fmt.Sprintf("duplicate package for field key %s: %s", fieldKey, key))
+					err = fmt.Errorf("duplicate package for field key %s: %s", fieldKey, key)
 					return
 				}
 			}
